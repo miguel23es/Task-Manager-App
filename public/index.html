@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet" />
+    <!-- Add in your <head> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c95c8361b7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<title>To-Do List App</title>
+</head>
+
+<body>
+    <div class = "navbar">
+        <div><img src="img/logo.png" alt="" class="icon"></div>
+        <div class="search-wrapper">
+        <div class="search-bar">
+            <input type="text" class="input-field" placeholder="Search tasks..." />
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="search-result-banner"></div>
+        </div>
+
+        <ul class="nav-options">
+            <li><i class="fa-solid fa-house"></i></li>
+            <button class="new-button"><li class= "alignment"><p>New</p><i class="fa-solid fa-circle-plus"></i></li></button>
+            <li class="notBtn">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notif-dot"></span>
+            </li>
+            <li><a href="account.html"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>
+
+    <p class="greeting"></p>
+<!-- Grid area with blocks and calendar-->
+    <div class="container">
+        <!-- Note creation area -->
+        <div class="recent-wrapper" style="grid-area: a1;"> 
+            <div class="recent" >
+                <div class="tabs">
+                    <button id="tab" data-tab="tab1"></button>
+                    <button id="tab" data-tab="tab2"></button>
+                    <button id="tab" data-tab="tab3"></button>
+                </div>
+                <div class="newNote">
+                    <p class = "note-header">NOTES</p>
+                </div>
+                <textarea class="noteSection" placeholder="Type your notes here..."></textarea>
+                    
+                </div>
+            
+        </div>
+        <!-- Task creation Area -->
+        <div class="work" style="grid-area: a2;">
+            <div class="task-title"><p>TASKS</p></div>
+            <div class="button-container">
+            <button class="add-button">Add Task</button>
+            <i class="fa-solid fa-plus"></i>
+            </div>
+        </div>
+        <!-- Calendar -->
+        <div class="calendar-wrapper" style="grid-area: b;">
+             <div id="calendar"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <!-- Flickpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</body>
+
+</html>

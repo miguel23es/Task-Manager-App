@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c95c8361b7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<title>To-Do List App</title>
+</head>
+
+<body class= "account-page">
+   <div class = "navbar">
+        <div><img src="img/logo.png" alt="" class="icon"></div> 
+        <div class="search-bar">
+            <input class="input-field" type="text" placeholder="Search..">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <ul class="nav-options">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+            <li><i class="fa-solid fa-bell"></i></li>
+            <li><a href="account.html"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="greeting"><p>Welcome to your account!</p></div>
+
+    <div class="avatar-wrapper">
+        <div class="avatar-container">
+            <label for="avatar-upload">
+            <img id="avatar-preview" src="img/default-avatar.png" alt="Avatar">
+            </label>
+        </div>
+        <label for="avatar-upload" class="upload-icon">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </label>
+        <input type="file" id="avatar-upload" accept="image/*" hidden>
+    </div> 
+    
+    <div class="username"><p></p></div>
+    <div class="account-info-container">
+        <p class="emailName"></p>
+        <p>Number of tasks:</p>
+        <button class="sign-out">Sign out</button>
+        <button class="delete">Delete account</button>
+    </div>
+    <script src="profile.js"></script>
+</body>
+
+</html>
