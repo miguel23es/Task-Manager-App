@@ -1,0 +1,1 @@
+A simple and efficient full-stack task manager web application that lets users create, update, and delete tasks in a clean and intuitive interface. Built with HTML, CSS, JavaScript, Node.js, Express, and MongoDB, this app supports user authentication and persistent task storage. Perfect for staying organized and boosting productivity!
