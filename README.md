@@ -5,7 +5,7 @@ A full-stack task management web application that helps users stay organized by 
 ---
 ## Screenshots
 
-![Home Page](images/login.png)
+![Home Page](images/login.jpg)
 ![Home Page](images/home.png)
 ![Dashboard](images/task.png)
 ![Login Page](images/profile.png)
