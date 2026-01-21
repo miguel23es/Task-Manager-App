@@ -11,8 +11,8 @@ A full-stack task management web application that helps users stay organized by 
     <td><img src="images/home.png" width="100%"></td>
   </tr>
   <tr>
-    <td><img src="images/tasks.png" width="100%"></td>
     <td><img src="images/profile.png" width="100%"></td>
+    <td><img src="images/task.png" width="100%"></td>
   </tr>
 </table>
 
