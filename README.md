@@ -5,8 +5,6 @@ A full-stack task management web application that helps users stay organized by 
 ---
 ## Screenshots
 
-## Screenshots
-
 <table>
   <tr>
     <td align="center">
