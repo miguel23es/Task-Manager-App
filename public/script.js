@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-fetch(`https://miluz.onrender.com/tasks?user=${userId}`)
+fetch(`/tasks?user=${userId}`)
     .then(res => res.json())
     .then(tasks => {
       const events = tasks.map(task => 
@@ -234,7 +234,7 @@ function showTabTitle(title) {
 
     newNoteContainer.append(h2);
 
-    fetch(`https://miluz.onrender.com/tabs/${currentTab}`, {
+    fetch(`/tabs/${currentTab}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json"
@@ -259,7 +259,7 @@ textArea.addEventListener("input", () => {
   debounceTimer = setTimeout(() => {
     const noteInput = textArea.value.trim();
 
-    fetch(`https://miluz.onrender.com/tab/${currentTab}`, {
+    fetch(`/tab/${currentTab}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -276,7 +276,7 @@ textArea.addEventListener("input", () => {
 
 // Function to fetch notes when needed
 function fetchNotes(currentTab) {
-    fetch(`https://miluz.onrender.com/tabs?id=${currentTab}&user=${userId}`)
+    fetch(`/tabs?id=${currentTab}&user=${userId}`)
         .then(response => response.json())
         .then(data => {
             if (data.length === 0 && currentTab !== 'general') {
@@ -513,7 +513,7 @@ document.body.addEventListener("click", (event) => {
                 const taskName = taskInput.value.trim();
                 if (taskName) {
                     TaskInfo();
-                    fetch('https://miluz.onrender.com/tasks', {
+                    fetch('/tasks', {
                         method: 'POST',
                         headers: {
                             "Content-Type" : "application/json",
@@ -714,7 +714,7 @@ function createTaskItem(taskName, lastInput, id, lastSelectedDate, start, end) {
                         taskElement.dataset.lastInput = description;
                         const updatedDescription = description
 
-                        fetch(`https://miluz.onrender.com/tasks/${taskElement.dataset.id}`, {
+                        fetch(`/tasks/${taskElement.dataset.id}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type' : 'application/json'
@@ -831,7 +831,7 @@ function setupDeleteButton() {
                     console.warn("Task has no ID and was likely already deleted.");
                     return;
                 }
-                fetch(`https://miluz.onrender.com/tasks/${id}`, {
+                fetch(`/tasks/${id}`, {
                     method: 'DELETE',
                 })
                 .then(response => {
@@ -994,7 +994,7 @@ searchBar();
 // Function to display tasks already in the back end
 function fetchTasks(){
     const btnConatiner = document.querySelector(".button-container");
-    fetch(`https://miluz.onrender.com/tasks?user=${userId}`)
+    fetch(`/tasks?user=${userId}`)
      .then(response => response.json())
      .then(data => {
         if(data.length > 0) {

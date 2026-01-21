@@ -59,7 +59,7 @@ deleteBtn.addEventListener("click", () => {
     const confirmed = confirm("Are you sure you want to delete your account?");
     if(!confirmed) return;
 
-    fetch(`https://miluz.onrender.com/users/${userId}`, {
+    fetch(`/users/${userId}`, {
         method: "DELETE"
     })
     .then(res => res.json())

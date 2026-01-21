@@ -8,7 +8,7 @@ signUpButton.addEventListener("click", () => {
 
     console.log(`${username}, ${email}, ${password}`);
 
-    fetch('https://miluz.onrender.com/users', {
+    fetch('/users', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

@@ -8,7 +8,7 @@ function logInUser(){
     const password = document.querySelector('#password').value;
 
     // POST route to compare with the database
-    fetch('https://miluz.onrender.com/login', {
+    fetch('/login', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
