@@ -3,6 +3,14 @@
 A full-stack task management web application that helps users stay organized by creating, updating, and managing their tasks in a clean and intuitive interface. The app includes **user authentication**, calendar scheduling, and persistent storage using MongoDB.
 
 ---
+## Screenshots
+
+![Home Page](images/login.png)
+![Home Page](images/home.png)
+![Dashboard](images/task.png)
+![Login Page](images/profile.png)
+
+---
 
 ## 🌐 Live Website  
 https://miluz.onrender.com
