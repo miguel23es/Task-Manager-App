@@ -206,17 +206,21 @@ const Tab = require("./models/Tab");
 
 //Post Route
   app.post('/tab', async (req, res) => {
-    const { id, title, note} = req.body;
-  
+    const { id, title, note, user } = req.body;
+
+    if (!user || user === 'null') {
+      return res.status(400).json({ error: 'Missing userId in request' });
+    }
+
     try {
-      // Try to find existing tab with this title
-      let tab = await Tab.findOne({ id });
+      // Try to find existing tab with this id for this user
+      let tab = await Tab.findOne({ id, user });
       if (tab) {
       // Add new note to existing notes array
       tab.notes = note;
     } else {
       // Create new tab with first note
-      tab = new Tab({ id, title, notes: note});
+      tab = new Tab({ id, title, notes: note, user });
     }
       const savedTab = await tab.save();
       res.status(201).json(savedTab);
@@ -226,18 +230,22 @@ const Tab = require("./models/Tab");
     }
   });
 
-// PUT route for the tab note 
+// PUT route for the tab note
 app.put('/tab/:id', async (req, res) => {
   const tabId = req.params.id;
-  const { note } = req.body;
+  const { note, user } = req.body;
+
+  if (!user || user === 'null') {
+    return res.status(400).json({ error: 'Missing userId in request' });
+  }
 
   try {
     const updateFields = { notes: note };
 
     const updatedTab = await Tab.findOneAndUpdate(
-      { id: tabId },
+      { id: tabId, user },
        updateFields,
-      { new: true, upsert: true, runValidators: true }
+      { new: true, upsert: true, runValidators: true, setDefaultsOnInsert: true }
     );
 
     res.json(updatedTab);
@@ -249,13 +257,17 @@ app.put('/tab/:id', async (req, res) => {
 // PUT route for tab title
 app.put('/tabs/:id', async (req, res) => {
     const tabId = req.params.id;
-    const { title } = req.body;
-    
+    const { title, user } = req.body;
+
+    if (!user || user === 'null') {
+      return res.status(400).json({ error: 'Missing userId in request' });
+    }
+
     try{
       const updatedTab = await Tab.findOneAndUpdate(
-        { id: tabId },
+        { id: tabId, user },
         { title },
-        {new: true, upsert: true, runValidators: true}
+        {new: true, upsert: true, runValidators: true, setDefaultsOnInsert: true}
       );
 
       res.json(updatedTab);
@@ -266,10 +278,16 @@ app.put('/tabs/:id', async (req, res) => {
   });
 
 
-// GET route for notes 
+// GET route for notes
 app.get('/tabs', async (req, res) => {
     const tabId = req.query.id;
-    const tab = await Tab.find({ id: tabId });
+    const userId = req.query.user;
+
+    if (!userId || userId === 'null') {
+      return res.status(400).json({ error: 'Missing userId in query' });
+    }
+
+    const tab = await Tab.find({ id: tabId, user: userId });
     res.json(tab);
 });
 
