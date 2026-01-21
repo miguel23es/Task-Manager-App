@@ -239,7 +239,7 @@ function showTabTitle(title) {
     headers: {
         "Content-Type": "application/json"
     },
-    body: JSON.stringify({ title: title })
+    body: JSON.stringify({ title: title, user: userId })
     })
     .then(response => response.json())
     .then(data => {
@@ -264,7 +264,7 @@ textArea.addEventListener("input", () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ note: noteInput }),
+      body: JSON.stringify({ note: noteInput, user: userId }),
     })
       .then((res) => res.json())
       .then((updatedTab) => {
@@ -276,7 +276,7 @@ textArea.addEventListener("input", () => {
 
 // Function to fetch notes when needed
 function fetchNotes(currentTab) {
-    fetch(`https://miluz.onrender.com/tabs?id=${currentTab}`)
+    fetch(`https://miluz.onrender.com/tabs?id=${currentTab}&user=${userId}`)
         .then(response => response.json())
         .then(data => {
             if (data.length === 0 && currentTab !== 'general') {
