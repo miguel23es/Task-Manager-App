@@ -5,16 +5,33 @@ A full-stack task management web application that helps users stay organized by 
 ---
 ## Screenshots
 
+## Screenshots
+
 <table>
   <tr>
-    <td><img src="images/login.jpg" width="100%"></td>
-    <td><img src="images/home.png" width="100%"></td>
+    <td align="center">
+      <img src="images/login.jpg" width="100%">
+      <br><b>Login</b>
+    </td>
+    <td align="center">
+      <img src="images/home.png" width="100%">
+      <br><b>Home</b>
+    </td>
   </tr>
   <tr>
-    <td><img src="images/profile.png" width="100%"></td>
-    <td><img src="images/task.png" width="100%"></td>
+    <td align="center">
+      <img src="images/profile.png" width="100%">
+      <br><b>Profile</b>
+    </td>
+    <td align="center">
+      <img src="images/task.png" width="100%">
+      <br><b>Tasks</b>
+    </td>
   </tr>
 </table>
+
+---
+
 
 ---
 
