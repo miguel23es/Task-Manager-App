@@ -1,6 +1,9 @@
-
 // MongoDB set-up
 const mongoose = require('mongoose');
+
+// Cloudinary set-up
+const cloudinary = require("./cloudinary");
+const streamifier = require("streamifier");
 
 // Replace the string below with your actual connection string
 const mongoURI = process.env.MONGO_URI;
@@ -25,34 +28,46 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // Avatar file upload 
-const multer = require('multer');
-const fs = require('fs');
+const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const dir = './uploads/';
-    if(!fs.existsSync(dir)) fs.mkdirSync(dir);
-    cb(null, dir);
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${req.params.userId}-${Date.now()}${path.extname(file.originalname)}`);
+const upload = multer({
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB max
+  fileFilter(req, file, cb) {
+    if (!file.mimetype.startsWith("image/")) {
+      cb(new Error("Please upload an image"));
+    }
+    cb(null, true);
   }
 });
-const upload = multer({ storage });
 
-app.use('/uploads', express.static('uploads'));
+
 
 // Route for Avatar 
-app.post('/users/:userId/avatar', upload.single('avatar'), async (req, res) => {
-  const userId = req.params.userId;
-  const filePath = `/uploads/${req.file.filename}`;
-
+app.post("/users/:userId/avatar", upload.single("avatar"), async (req, res) => {
   try {
-    await User.findByIdAndUpdate(userId, { avatarUrl: filePath });
-    res.json({ message: 'Avatar uploaded successfully', avatarUrl: filePath });
+    const userId = req.params.userId;
+    const user = await User.findById(userId);
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // Upload to Cloudinary
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder: "avatars", public_id: userId },
+      async (error, result) => {
+        if (error) return res.status(500).json({ error: "Upload failed" });
+
+        // Save Cloudinary URL to MongoDB
+        user.avatarUrl = result.secure_url;
+        await user.save();
+
+        res.json({ avatarUrl: result.secure_url });
+      }
+    );
+
+    streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to upload avatar' });
+    res.status(500).json({ error: "Avatar upload failed" });
   }
 });
 
@@ -121,6 +136,23 @@ app.delete('/users/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete user' });
   }
 });
+
+// Gets number of taks for the user 
+app.get("/tasks/count/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const count = await Task.countDocuments({ user: userId });
+
+    console.log("Task count for user", userId.toString(), "=", count);
+
+    res.json({ totalTasks: count });
+  } catch (err) {
+    console.error("Count error:", err);
+    res.status(500).json({ error: "Failed to count tasks" });
+  }
+});
+
 
 // Routes for CRUD of tasks
 

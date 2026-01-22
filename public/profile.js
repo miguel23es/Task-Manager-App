@@ -37,13 +37,27 @@ avatarUpload.addEventListener('change', async (event) => {
     });
 });
 
+
 // Name for the user
-document.addEventListener("DOMContentLoaded", () => {
-    userName = document.querySelector(".username");
-    emailName = document.querySelector(".emailName");
-    userName.innerHTML = `${username}`;
-    emailName.innerHTML = `Email: ${email}`;
-})
+document.addEventListener("DOMContentLoaded", async () => {
+  const userName = document.querySelector(".username");
+  const emailName = document.querySelector(".emailName");
+  const no_tasks = document.querySelector(".no_tasks");
+
+  userName.innerText = username;
+  emailName.innerText = `Email: ${email}`;
+
+  try {
+    const res = await fetch(`/tasks/count/${userId}`);
+    const data = await res.json();
+    no_tasks.innerText = `Number of tasks: ${data.totalTasks}`;
+  } catch (err) {
+    console.error("Task count failed", err);
+    no_tasks.innerText = "Number of tasks: 0";
+  }
+});
+
+
 
 // Signs user out
 signOutButton.addEventListener("click", () => {
