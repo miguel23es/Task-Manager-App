@@ -5,6 +5,10 @@
     font-family: "Roboto", serif;
 }
 
+.auth-guarded {
+  visibility: hidden;
+}
+
 /* Nav Bar customzing */
 .navbar{
     display: flex;

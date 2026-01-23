@@ -19,8 +19,10 @@ const userId = localStorage.getItem('userId');
 const username = localStorage.getItem('username');
 
 
-if(!userId){
-    window.location.href = "login.html";
+if (!userId) {
+  window.location.replace("login.html");
+} else {
+  document.body.classList.remove("auth-guarded");
 }
 
 // Greeting the user

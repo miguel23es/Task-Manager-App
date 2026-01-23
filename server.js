@@ -40,8 +40,6 @@ const upload = multer({
   }
 });
 
-
-
 // Route for Avatar 
 app.post("/users/:userId/avatar", upload.single("avatar"), async (req, res) => {
   try {
@@ -152,7 +150,6 @@ app.get("/tasks/count/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to count tasks" });
   }
 });
-
 
 // Routes for CRUD of tasks
 
