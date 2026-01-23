@@ -13,9 +13,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     const res = await fetch(`/users/${userId}`);
     const data = await res.json();
 
-    if(data.avatarUrl) {
+    if (data.avatarUrl) {
+    const img = new Image();
+    img.src = data.avatarUrl;
+
+    img.onload = () => {
         avatarPreview.src = data.avatarUrl;
-    }
+        avatarPreview.style.opacity = "1";
+        };
+     }
 });
 
 // When user uploads a new image 

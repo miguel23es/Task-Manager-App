@@ -920,6 +920,10 @@ body.account-page {
 }
 
 /* Account Management Page */
+#avatar-preview {
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+}
 
 /* Avatar */
 .avatar-wrapper {
