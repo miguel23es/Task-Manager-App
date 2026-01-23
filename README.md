@@ -34,7 +34,7 @@ A full-stack task management web application that helps users stay organized by 
 ---
 
 ## 🌐 Live Website  
-https://miluz.onrender.com
+https://www.miluz.us
 
 *(This is the best way to experience the app — no setup required.)*
 
